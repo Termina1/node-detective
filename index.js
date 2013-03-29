@@ -52,7 +52,7 @@ exports.find = function (src, opts) {
         if (node.arguments.length
         && node.arguments[0].type === 'Literal') {
             if(opts.includeLeft) {
-                modules.strings.push({module: node.arguments[0].value, variable: parent.left.name});
+                modules.strings.push({module: node.arguments[0].value, variable: node.parent.left.name});
             } else {
                 modules.strings.push(node.arguments[0].value);
             }
