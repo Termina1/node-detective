@@ -51,7 +51,11 @@ exports.find = function (src, opts) {
         if (!isRequire(node)) return;
         if (node.arguments.length
         && node.arguments[0].type === 'Literal') {
-            modules.strings.push(node.arguments[0].value);
+            if(opts.includeLeft) {
+                modules.strings.push({module: node.arguments[0].value, variable: parent.left.name});
+            } else {
+                modules.strings.push(node.arguments[0].value);
+            }
         }
         else {
             modules.expressions.push(escodegen.generate(node.arguments[0]));
